@@ -1,5 +1,6 @@
 #include "forward_list.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     int *test_1 = malloc(sizeof(int));

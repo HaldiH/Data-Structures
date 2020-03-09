@@ -3,8 +3,6 @@
 //
 #pragma once
 
-#include <stdlib.h>
-
 struct ForwardIterator {
     struct ForwardIterator *next;
     void *data;

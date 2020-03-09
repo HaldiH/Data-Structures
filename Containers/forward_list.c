@@ -2,7 +2,7 @@
 // Created by hugo on 3/3/20.
 //
 #include "forward_list.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 struct ForwardIterator *ForwardIterator_factory(void *data_ptr) {
     struct ForwardIterator *node = (struct ForwardIterator *)malloc(sizeof(struct ForwardIterator));
@@ -178,7 +178,8 @@ struct ForwardIterator *ForwardList_begin(ForwardList_t *forward_list) {
 struct ForwardIterator *ForwardList_end(ForwardList_t *forward_list) {
     return forward_list ? forward_list->end : NULL;
 }
-void *ForwardList_erase_after(ForwardList_t *forward_list, struct ForwardIterator *first, struct ForwardIterator *last) {
+void *ForwardList_erase_after(ForwardList_t *forward_list, struct ForwardIterator *first,
+                              struct ForwardIterator *last) {
     if (!forward_list || !first || !last)
         return NULL;
 
