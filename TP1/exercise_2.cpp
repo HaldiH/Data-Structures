@@ -40,9 +40,9 @@ float Coordinate::distance(Coordinate a, Coordinate b) {
 Coordinate Airport::getCoordinates() { return m_coordinates; }
 std::string Compagny::getName() { return m_name; }
 std::vector<Employee *> Compagny::getStaff() { return m_staff; }
-std::vector<Flight *> Compagny::getFlight() { return m_flights; }
+std::vector<Flight *> Compagny::getFlights() { return m_flights; }
 std::vector<Airport *> Compagny::getAirports() { return m_airports; }
-std::vector<Aircraft *> Compagny::getAircraft() { return m_aircrafts; }
+std::vector<Aircraft *> Compagny::getAircrafts() { return m_aircrafts; }
 void Compagny::addFlight(Flight *flight) { m_flights.emplace_back(flight); }
 void Compagny::addEmployee(Employee *employee) { m_staff.emplace_back(employee); }
 void Compagny::addAirport(Airport *airport) { m_airports.emplace_back(airport); }

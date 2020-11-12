@@ -3,4 +3,6 @@ project(TP1)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(TP1 exercise_1.cpp exercise_2.cpp)
+include_directories(.)
+add_executable(exercise_1 exercise_1.cpp)
+add_executable(exercise_2 exercise_2.cpp)

@@ -181,7 +181,7 @@ class Flight {
     + Flight(flightNumber : Integer,\n aircraft : Aircraft,\n crew : ArrayList<Employee>,\n departureTime : Long,\n departureAirport : Airport,\n arrivalAirport : Airport)
     .. Getters ..
     + getFlightNumber() : Integer
-    + getAircraft() : Aircraft
+    + getAircrafts() : Aircraft
     + getCrew() : ArrayList<Employee>
     + getDepartureTime() : Long
     + getArrivalAirport() : Airport

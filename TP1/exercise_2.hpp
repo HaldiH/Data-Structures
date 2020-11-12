@@ -121,9 +121,9 @@ class Compagny {
 
     std::string getName();
     std::vector<Employee *> getStaff();
-    std::vector<Flight *> getFlight();
+    std::vector<Flight *> getFlights();
     std::vector<Airport *> getAirports();
-    std::vector<Aircraft *> getAircraft();
+    std::vector<Aircraft *> getAircrafts();
 
     void addFlight(Flight *flight);
     void addEmployee(Employee *employee);
