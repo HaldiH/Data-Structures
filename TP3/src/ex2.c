@@ -8,7 +8,7 @@
 #include <string.h>
 
 int key_compare(const void *val1, const void *val2) {
-  return *(int *)val1 - *(int *)val2;
+  return *(int *)val2 - *(int *)val1;
 }
 
 map_t extractPassengerTree(const char *filename) {
@@ -25,6 +25,7 @@ map_t extractPassengerTree(const char *filename) {
   map_t map;
   map.begin = NULL;
   map.root = NULL;
+  map.end = NULL;
   map.key_compare = key_compare;
 
   while ((c = getc(fp)) != EOF) {

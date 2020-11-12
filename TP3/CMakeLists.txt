@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(include)
 
-add_library(ex1 SHARED src/ex1.c src/forward_list.c)
+add_library(ex1 STATIC src/ex1.c src/forward_list.c)
 
 add_executable(Exercise_1 src/main1.c)
 target_link_libraries(Exercise_1 PUBLIC ex1)

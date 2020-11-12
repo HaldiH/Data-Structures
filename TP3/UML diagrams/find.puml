@@ -1,0 +1,16 @@
+@startuml find
+
+title find()
+
+if (clé == noeud.clé) then (oui)
+    stop
+else (non)
+    if (clé < noeud.clé) then (oui)
+        :find(noeud.gauche);
+        end
+    else (non)
+        :find(noeud.droit);
+        end
+    endif
+endif
+@enduml

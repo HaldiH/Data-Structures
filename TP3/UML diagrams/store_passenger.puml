@@ -1,0 +1,10 @@
+@startuml Store and find
+title Stocker et trouver des passagers
+
+start
+while (lit passager?)
+    :insert(passager, numéro de siège);
+endwhile
+:find(numéro de siège);
+stop
+@enduml

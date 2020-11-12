@@ -24,6 +24,7 @@ map_t *map_factory(int (*key_compare)(const void *, const void *)) {
   map->key_compare = key_compare;
   map->root = NULL;
   map->begin = NULL;
+  map->end = NULL;
   return map;
 }
 pair_bool map_insert(map_t *map, const value_t value) {
@@ -75,3 +76,19 @@ map_iterator_t *map_find(map_t *map, const void *key) {
   }
   return it; // Return NULL if not found
 }
+value_t map_iterator_getValue(map_iterator_t *it) { return it->value; }
+void map_iterator_destructor(map_iterator_t **pIt) {
+  free(*pIt);
+  *pIt = NULL;
+}
+void map_destructor(map_t **pMap) { // Need iteration implementation before
+  map_t *map = *pMap;
+  for (map_iterator_t *it = map_begin(map); it != map_end(map);
+       it = map_iterator_next(it)) {
+    map_iterator_destructor(&it);
+  }
+  free(map);
+  *pMap = NULL;
+}
+map_iterator_t *map_end(map_t *map) { return map->end; }
+map_iterator_t *map_iterator_next(map_iterator_t *it) { return NULL; } // NOT IMPLEMENTED

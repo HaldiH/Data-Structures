@@ -1,0 +1,16 @@
+@startuml insert
+title insert
+start
+if (noeud == NULL) then (yes)
+    :noeud = nouveau(passager);
+else (no)
+    if (clé < noeud.clé) then (yes)
+        :insert(noeud.gauche);
+        end
+    else
+        :insert(noeud.droit);
+        end
+    endif
+endif
+stop
+@enduml

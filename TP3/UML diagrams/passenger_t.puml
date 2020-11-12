@@ -1,0 +1,9 @@
+@startuml passenger_t
+class passenger_t {
+    - id : int
+    - firstName : string
+    - lastName : string
+    - age : int
+    - seatNumber : int
+}
+@enduml
