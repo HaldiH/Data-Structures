@@ -1,0 +1,7 @@
+@startuml airport_t
+class airport_t {
+    - iata : string
+    - country : string
+    - city : string
+}
+@enduml
