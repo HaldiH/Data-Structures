@@ -1,0 +1,45 @@
+@startuml
+object Geneva {
+    m_icaoCode = LSGG
+    m_country = "CHE"
+    m_coordinates = {x: 46.2380972, y: 6.10894999}
+    m_elevation = 1411
+    m_use = Public
+}
+object London {
+    m_icaoCode = EGLL
+    m_country = "GBR"
+    m_coordinates = {x: 51.4775, y: -0.461389}
+    m_elevation = 83
+    m_use = Public
+}
+object Boeing {
+    m_manufacturer = "Boeing"
+    m_matriculation = "757-2G4"
+    m_model = "VC-32A"
+    ...
+}
+object Crew {
+    ArrayList<Employee>
+}
+object "Departure Time" as DepartureTime {
+    UNIX time
+}
+object "Flight Number" as FlightNumber {
+    Given by aviation authorities
+}
+Object Flight {
+    m_flightNumber = 6341
+    m_aircraft = Boeing
+    m_crew = Crew
+    m_departureAirport = Geneva
+    m_arrivalAirport = London
+}
+Flight *-- Geneva
+Flight *-- London
+Flight *-- Boeing
+Flight *-- Crew
+Flight *-- DepartureTime
+Flight *-- FlightNumber
+
+@enduml
