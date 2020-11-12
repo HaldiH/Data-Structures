@@ -5,10 +5,30 @@ Pour ce TP j'ai réalisé une bibliothèque de conteneurs (liste chaînée, pile
 ## Exercice 1
 
 1. Pour cet exercice, une pile peut être utilisée car avant de dépiler la catégorie, il faudra que toutes les sous-catégories soient dépilées, et pour chaque sous-catégorie, toutes les tâches devront être dépilées.
-2. Diagramme ci-dessous:
+2. Voir figure 1.
+3. Pour compiler le code:  
+
+        gcc -o Exercise_1 -Iinclude/ Exercise_1.c
+
+## Exercice 2
+
+1. La structure à utiliser est une file (queue).
+2. Voir figure 2.
+3. Pour compiler le code:
+
+        gcc -o Exercise_2 -Iinclude Exercise_2.c forward_list.c queue.c
 
 ```plantuml
 @startuml
+
+title
+    Diagramme check-list
+end title
+
+legend
+    Figure 1
+end legend
+
 start
 while (catégories?) is (disponible)
     :Afficher catégorie;
@@ -29,21 +49,21 @@ while (catégories?) is (disponible)
     endwhile
 endwhile
 stop
+
+@enduml
 ```
-
-3. Pour compiler le programme de cet exercice:
-
-```shell
-gcc -o Exercise_1 -Iinclude/ Exercise_1.c
-```
-
-## Exercice 2
-
-1. La structure à utiliser est une file (queue).
-2. Diagramme ci-dessous:
 
 ```plantuml
 @startuml
+
+title
+    Diagramme file d'attente
+end title
+
+legend
+    Figure 2
+end legend
+
 start
 :Choisir 2 nombres\nau hasard m et n;
 if (Salle pleine?) then (oui)
@@ -58,10 +78,4 @@ else (non)
 endif
 stop
 @enduml
-```
-
-3. Pour compiler le programme:
-
-```shell
-gcc -o Exercise_2 -Iinclude Exercise_2.c forward_list.c queue.c
 ```
