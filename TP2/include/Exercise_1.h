@@ -16,13 +16,15 @@ typedef struct {
 typedef struct {
     char *sub_cat_name;
     bool isOk;
-    Stack_t *task_stack;
+    task_t *tasks;
+    size_t tasks_size;
 } sub_cat_t;
 
 typedef struct {
     char *category_name;
     bool isOk;
-    Stack_t *sub_category_stack;
+    sub_cat_t *sub_categories;
+    size_t sub_categories_size;
 } category_t;
 
 typedef struct {
