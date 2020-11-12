@@ -48,12 +48,15 @@ void bfs(vertex_t *v) {
     Queue_destructor(&q);
 }
 
+// DFS iterative
 void dfs(vertex_t *v) {
     Stack_t *s = Stack_factory();
     Stack_push(s, v);
     while (!Stack_empty(s)) {
         v = Stack_pop(s);
+        printf("Exploring vertex edge...\n");
         if (!v->is_discovered) {
+            v->is_discovered = true;
             for (struct ForwardIterator *it = ForwardList_begin(&v->edges); it; it = it->next) {
                 vertex_t *w = it->data;
                 Stack_push(s, w);
@@ -162,6 +165,14 @@ int main() {
         }
         printf("\n\n");
     }
+
+    // Once we ran BFS or DFS, we cannot run out of the way another DFS or BFS procedure since each procedure will set
+    // every vertex as discovered. We should first set every vertex as undiscovered to achieve the next procedure.
+
+    //    printf("Running BFS...\n");
+    //    bfs(ForwardList_front(&airport_nodes_list));
+    //    printf("Running DFS...\n");
+    //    dfs(ForwardList_front(&airport_nodes_list));
 
     char buffer[50];
     printf("Calculate the shortest path between 2 airports\n"

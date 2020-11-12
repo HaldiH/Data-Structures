@@ -45,7 +45,7 @@
 
 ## Exercice 2
 
-1.  ![bindings\_weight](images/bindings_weight.png "fig:fig:fig:"){width="476px"}
+1.  ![bindings\_weight](images/bindings_weight.png "fig:fig:fig:fig:fig:fig:fig:fig:"){width="476px"}
 2.  Pour trouver le chemin le plus court entre deux sommets, on peut utiliser le BFS car il visite tous les noeuds d'un graphe en ne passant qu'une fois pas noeud. Il suffit ensuite de ne retenir à chaque fois que le chemin avec le poids de parcours le plus faible.
 
 ## Exercice 3
@@ -59,3 +59,5 @@ Pour compiler l'implémentation:
         gcc -Iinclude/ src/*.c -o TP4
 
 Lors de l'exécution du programme, la liste des aéroports et leur liaisons va être affiché, et on va demander à l'utilisateur d'entrer une ville de départ et d'arrivée pour calculer le chemin le plus court entre ces deux villes.
+
+N.B. : Veuillez utiliser les fichiers `liaisons.txt` et `aeroports.txt` fournis car ils sont encodés avec des fin de ligne UNIX (LF) plutôt que Windows (CRLF).
