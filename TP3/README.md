@@ -1,4 +1,4 @@
-# Structures de Données - TP3
+# Structures de Données - TP3 - HALDI Hugo
 
 ## Exercice 1
 
@@ -6,8 +6,8 @@
 2. ![forward_list_t](images/forward_list_t.png)
 3. Pour compiler le code, il faut d'abord compiler les bibliothèques que l'on va utiliser aussi dans l'exercice suivant, puis l'exécutable principal:
 
-    gcc -Iinclude -c -fpic src/forward_list.c src/ex1.c
-    gcc -Iinclude -o ex1 src/main1.c ex1.o forward_list.o
+   gcc -Iinclude/ -c -fpic src/forward_list.c src/ex1.c
+   gcc -Iinclude/ -o ex1 src/main1.c ex1.o forward_list.o
 
 <div class="page" />
 
@@ -21,8 +21,8 @@
    ![find](images/find.png)
 4. Pour compiler le code, il faut d'abord compiler la bibliothèque `map`, puis compiler l'exécutable un utilisant les bibliothèques compilées dans le dernier exercice:
 
-    gcc -Iinclude -c -fpic src/map.c
-    gcc -Iinclude -o ex2 src/main2.c src/ex2.c src/map.c ex1.o forward_list.o
+   gcc -Iinclude/ -c -fpic src/map.c
+   gcc -Iinclude/ -o ex2 src/main2.c src/ex2.c src/map.c ex1.o forward_list.o
 
 <div class="page" />
 
