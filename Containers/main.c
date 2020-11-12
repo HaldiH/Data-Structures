@@ -25,5 +25,8 @@ int main() {
     printf("%d\n", *((int *)Stack_pop(container)));
     printf("%d\n", *((int *)Stack_pop(container)));
 
+    Stack_destructor(&container);
+    printf("%s", (const char *)container);
+
     return 0;
 }

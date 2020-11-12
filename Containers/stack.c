@@ -12,7 +12,7 @@ Stack_t *Stack_factory() {
 void Stack_destructor(Stack_t **stack) {
     if (!stack)
         return;
-    ForwardList_destructor((*stack)->list);
+    ForwardList_destructor(&(*stack)->list);
     free(*stack);
     *stack = NULL;
 }

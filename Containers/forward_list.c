@@ -11,8 +11,9 @@ struct ForwardIterator *ForwardIterator_factory(void *data_ptr) {
     return node;
 }
 
-void ForwardIterator_destructor(struct ForwardIterator *to_destroy) { // WARNING ! Does not free data inside node
-    free(to_destroy);
+void ForwardIterator_destructor(struct ForwardIterator **to_destroy) { // WARNING ! Does not free data inside node
+    free(*to_destroy);
+    *to_destroy = NULL;
 }
 
 ForwardList_t *ForwardList_factory() {
@@ -22,16 +23,17 @@ ForwardList_t *ForwardList_factory() {
     return ForwardList;
 }
 
-void ForwardList_destructor(ForwardList_t *forward_list) {
+void ForwardList_destructor(ForwardList_t **forward_list) {
     if (!forward_list)
         return;
 
-    while (forward_list->begin) {
-        struct ForwardIterator *current = forward_list->begin->next;
-        ForwardIterator_destructor(forward_list->begin);
-        forward_list->begin = current;
+    while ((*forward_list)->begin) {
+        struct ForwardIterator *current = (*forward_list)->begin->next;
+        ForwardIterator_destructor(&(*forward_list)->begin);
+        (*forward_list)->begin = current;
     }
-    free(forward_list);
+    free(*forward_list);
+    *forward_list = NULL;
 }
 
 int ForwardList_push_front(ForwardList_t *forward_list, void *data_ptr) {
@@ -105,7 +107,7 @@ void *ForwardList_pop(ForwardList_t *forward_list, int pos) {
     struct ForwardIterator *popped_node = current->next;
     current->next = current->next->next;
     void *result = popped_node->data;
-    ForwardIterator_destructor(popped_node);
+    ForwardIterator_destructor(&popped_node);
     return result;
 }
 
@@ -116,7 +118,7 @@ void *ForwardList_pop_front(ForwardList_t *forward_list) {
     struct ForwardIterator *popped_node = forward_list->begin;
     forward_list->begin = popped_node->next;
     void *result = popped_node->data;
-    ForwardIterator_destructor(popped_node);
+    ForwardIterator_destructor(&popped_node);
     return result;
 }
 
@@ -128,7 +130,7 @@ void *ForwardList_pop_back(ForwardList_t *forward_list) {
 
     if (!current->next) {
         void *result = current->data;
-        ForwardIterator_destructor(current);
+        ForwardIterator_destructor(&current);
         forward_list->begin = NULL;
         return result;
     }
@@ -137,7 +139,7 @@ void *ForwardList_pop_back(ForwardList_t *forward_list) {
         current = current->next;
 
     void *result = current->next->data;
-    ForwardIterator_destructor(current->next);
+    ForwardIterator_destructor(&current->next);
     forward_list->end = current;
     current->next = NULL;
     return result;
@@ -194,11 +196,11 @@ void *ForwardList_erase_after(ForwardList_t *forward_list, struct ForwardIterato
         struct ForwardIterator *temp = current;
         current = current->next;
         free(temp->data);
-        ForwardIterator_destructor(temp);
+        ForwardIterator_destructor(&temp);
     }
     last = last->next;
     free(current->data);
-    ForwardIterator_destructor(current);
+    ForwardIterator_destructor(&current);
 
     first->next = last;
     return last;

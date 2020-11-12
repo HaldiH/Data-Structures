@@ -12,7 +12,7 @@ Queue_t *Queue_factory() {
 void Queue_destructor(Queue_t **queue) {
     if (!queue)
         return;
-    ForwardList_destructor((*queue)->list);
+    ForwardList_destructor(&(*queue)->list);
     free(*queue);
     *queue = NULL;
 }

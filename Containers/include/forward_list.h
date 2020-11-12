@@ -10,7 +10,7 @@ struct ForwardIterator {
 };
 
 struct ForwardIterator *ForwardIterator_factory(void *data_ptr);
-void ForwardIterator_destructor(struct ForwardIterator *to_destroy);
+void ForwardIterator_destructor(struct ForwardIterator **to_destroy);
 
 typedef struct {
     struct ForwardIterator *begin;
@@ -18,7 +18,7 @@ typedef struct {
 } ForwardList_t;
 
 ForwardList_t *ForwardList_factory();
-void ForwardList_destructor(ForwardList_t *forward_list);
+void ForwardList_destructor(ForwardList_t **forward_list);
 
 int ForwardList_push_front(ForwardList_t *forward_list, void *data_ptr);
 int ForwardList_push_back(ForwardList_t *forward_list, void *data_ptr);
