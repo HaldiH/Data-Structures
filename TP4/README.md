@@ -1,4 +1,10 @@
-# Structures de Données - TP4
+---
+author: Hugo Haldi
+date: 20 avril 2020
+geometry: 'left=2cm,right=2cm,top=2cm,bottom=2cm'
+output: TP4\_HALDI\_Hugo
+title: 'Structures de Données - TP4'
+---
 
 ## Exercice 1
 
@@ -15,11 +21,8 @@
     | A6            | MAD       | Madrid   | Espagne     | Geneve                            |
     | A7            | GVA       | Genève   | Suisse      | Tokyo Paris Londres               |
 
-3.  ![Bindings](images/bindings.png){width="476px"}
+3.  ![Bindings](images/bindings.png){width="380"}
 
-```{=tex}
-\pagebreak
-```
 4.  -   Matrice d'adjacence:
 
         $A=\begin{bmatrix} 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1\\ 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0\\ 1 & 1 & 0 & 1 & 1 & 0 & 0 & 1\\ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \end{bmatrix}$
@@ -43,9 +46,13 @@
 
     -   Le BFS (Breadth First Search) est un parcours en largeur, à chaque noeud on va d'abord explorer tous ses voisins avant de passer à la profondeur suivante. Il permet de déterminer le chemin le plus court entre 2 sommets et trouver les composantes connexes d'un graphe.
 
+```{=tex}
+\pagebreak
+```
 ## Exercice 2
 
-1.  ![bindings\_weight](images/bindings_weight.png "fig:fig:fig:fig:fig:fig:fig:fig:"){width="476px"}
+1.  ![Bindings weight](images/bindings_weight.png){width="476px"}
+
 2.  Pour trouver le chemin le plus court entre deux sommets, on peut utiliser le BFS car il visite tous les noeuds d'un graphe en ne passant qu'une fois pas noeud. Il suffit ensuite de ne retenir à chaque fois que le chemin avec le poids de parcours le plus faible.
 
 ## Exercice 3
