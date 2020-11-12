@@ -45,8 +45,17 @@
 
 ## Exercice 2
 
-1.  ![bindings\_weight](images/bindings_weight.png "fig:"){width="476px"}
+1.  ![bindings\_weight](images/bindings_weight.png "fig:fig:fig:"){width="476px"}
 2.  Pour trouver le chemin le plus court entre deux sommets, on peut utiliser le BFS car il visite tous les noeuds d'un graphe en ne passant qu'une fois pas noeud. Il suffit ensuite de ne retenir à chaque fois que le chemin avec le poids de parcours le plus faible.
 
 ## Exercice 3
 
+1.  Le programme lit d'abord le fichier `aeroports.txt` ligne par ligne et crée un noeud contenant un aéroport et une liste de liaisons et ajoute ce noeud dans une liste d'aéroports. Ensuite le programme lit `liaisons.txt` et à chaque ligne, on ajoute dans la liste de liaisons de l'aéroport courant toutes le liaisons de la ligne courante. On obtient alors une liste de noeuds contenant chacun un aéroport et une liste de liasons (chaque liaison pointant vers un noeud d'aéroport).
+2.  Les procédures BFS et DFS sont implémentées dans `main.c` dans les procédures `bfs` et `dfs`.
+3.  L'algorithme de recherche de plus court chemin utilise le BFS avec l'algorithme de Dijkstra. À chaque fois qu'on visite un noeud, on définit par quel noeud on l'a atteint, et la première itération à atteindre le noeud recherché, on retourne le noeud recherché avec un noeud parent jusqu'au noeud de départ.
+
+Pour compiler l'implémentation:
+
+        gcc -Iinclude/ src/*.c -o TP4
+
+Lors de l'exécution du programme, la liste des aéroports et leur liaisons va être affiché, et on va demander à l'utilisateur d'entrer une ville de départ et d'arrivée pour calculer le chemin le plus court entre ces deux villes.
