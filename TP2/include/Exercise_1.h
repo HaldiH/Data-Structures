@@ -4,37 +4,38 @@
 
 #ifndef TP2_EXERCISE_1_H
 #define TP2_EXERCISE_1_H
+#include "stack.h"
 #include <stdbool.h>
 #include <stdlib.h>
-#include "stack.h"
 
 typedef struct {
-  char **task_name;
-  bool isOk;
+    char *task_name;
+    bool isOk;
 } task_t;
 
 typedef struct {
-  char **sub_cat_name;
-  bool isOk;
-  Stack_t *tasks;
+    char *sub_cat_name;
+    bool isOk;
+    Stack_t *task_stack;
 } sub_cat_t;
 
 typedef struct {
-  char **category_name;
-  bool isOk;
-  Stack_t *sub_categories;
+    char *category_name;
+    bool isOk;
+    Stack_t *sub_category_stack;
 } category_t;
 
 typedef struct {
-  char *status;
-  char *action;
+    char *status;
+    char *action;
 } instruction_t;
 
-typedef enum {CATEGORY, SUB_CATEGORY, TASK} instruction_type_t;
+typedef enum { CATEGORY, SUB_CATEGORY, TASK } instruction_type_t;
 
 task_t *task_factory(char *task_name);
 
 sub_cat_t *sub_cat_factory(char *sub_category_name);
 
 category_t *category_factory(char *category_name);
+
 #endif // TP2_EXERCISE_1_H
