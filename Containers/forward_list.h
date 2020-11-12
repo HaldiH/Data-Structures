@@ -25,7 +25,7 @@ int ForwardList_insert(ForwardList_t *forward_list, int pos, void *data_ptr);
 void *ForwardList_pop(ForwardList_t *forward_list, int pos);
 void *ForwardList_pop_front(ForwardList_t *forward_list);
 void *ForwardList_pop_back(ForwardList_t *forward_list);
-int ForwardList_swap(struct ForwardIterator *iterator1, struct ForwardIterator *iterator2);
+int ForwardList_swap(struct ForwardIterator **iterator1, struct ForwardIterator **iterator2);
 void *ForwardList_erase_after(ForwardList_t *forward_list, struct ForwardIterator *first, struct ForwardIterator *last);
 
 void *ForwardList_front(ForwardList_t *forward_list);

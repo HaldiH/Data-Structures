@@ -142,10 +142,10 @@ void *ForwardList_pop_back(ForwardList_t *forward_list) {
     return result;
 }
 
-int ForwardList_swap(struct ForwardIterator *iterator1, struct ForwardIterator *iterator2) {
-    struct ForwardIterator *tmp = iterator1;
-    iterator1 = iterator2;
-    iterator2 = tmp;
+int ForwardList_swap(struct ForwardIterator **iterator1, struct ForwardIterator **iterator2) {
+    struct ForwardIterator *tmp = *iterator1;
+    *iterator1 = *iterator2;
+    *iterator2 = tmp;
     return 0;
 }
 
