@@ -69,3 +69,13 @@ ForwardList_t extractPassengerList(const char *filename) {
   free(fp);
   return list;
 }
+passenger_t *passenger_factory(uint id, char *firstName, char *lastName,
+                               uint age, uint seatNumber) {
+  passenger_t *passenger = malloc(sizeof(passenger_t));
+  passenger->id = id;
+  passenger->firstName = firstName;
+  passenger->lastName = lastName;
+  passenger->age = age;
+  passenger->seatNumber = seatNumber;
+  return passenger;
+}
