@@ -16,8 +16,8 @@ void Queue_destructor(Queue_t **queue) {
     free(*queue);
     *queue = NULL;
 }
-void *Queue_pop(Queue_t *queue) { return queue ? ForwardList_pop_back(queue->list) : NULL; }
-int Queue_push(Queue_t *queue, void *data) { return queue ? ForwardList_push_front(queue->list, data) : 1; }
+void *Queue_pop(Queue_t *queue) { return queue ? ForwardList_pop_front(queue->list) : NULL; }
+int Queue_push(Queue_t *queue, void *data) { return queue ? ForwardList_push_back(queue->list, data) : 1; }
 void *Queue_front(Queue_t *queue) { return queue ? ForwardList_front(queue->list) : NULL; }
 void *Queue_back(Queue_t *queue) { return queue ? ForwardList_back(queue->list) : NULL; }
 bool Queue_empty(Queue_t *queue) { return !queue || ForwardList_empty(queue->list); }

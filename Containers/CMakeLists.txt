@@ -3,7 +3,7 @@ project(Containers)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(.)
+include_directories(include)
 
 add_library(forward_list forward_list.c)
 add_library(stack stack.c)
