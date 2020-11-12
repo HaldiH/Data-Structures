@@ -138,15 +138,21 @@ void *ForwardList_pop_back(ForwardList_t *forward_list) {
 
     void *result = current->next->data;
     ForwardIterator_destructor(current);
+    forward_list->end = current;
     current->next = NULL;
     return result;
 }
 
-int ForwardList_swap(struct ForwardIterator **iterator1, struct ForwardIterator **iterator2) {
-    struct ForwardIterator *tmp = *iterator1;
-    *iterator1 = *iterator2;
-    *iterator2 = tmp;
-    return 0;
+int ForwardList_swap(ForwardList_t **list) {
+    if (!list)
+        return 1;
+    ForwardList_t *swapped = ForwardList_factory();
+    int rc = 0;
+    while (!ForwardList_empty(*list) && rc == 0)
+        rc = ForwardList_push_front(swapped, ForwardList_pop_front(*list));
+    if (rc == 0)
+        *list = swapped;
+    return rc;
 }
 
 void *ForwardList_front(ForwardList_t *forward_list) {
@@ -196,4 +202,7 @@ void *ForwardList_erase_after(ForwardList_t *forward_list, struct ForwardIterato
 
     first->next = last;
     return last;
+}
+bool ForwardList_empty(ForwardList_t *forward_list) {
+    return !forward_list || !forward_list->begin || !forward_list->end;
 }

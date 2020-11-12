@@ -9,11 +9,11 @@
 #include <stdbool.h>
 
 typedef struct {
-    ForwardList_t list;
+    ForwardList_t *list;
 } Queue_t;
 
 Queue_t *Queue_factory();
-void Queue_destructor(Queue_t *queue);
+void Queue_destructor(Queue_t **queue);
 
 void *Queue_pop(Queue_t *queue);
 int Queue_push(Queue_t *queue, void *data);

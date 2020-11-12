@@ -12,7 +12,7 @@ typedef struct {
 } Stack_t;
 
 Stack_t *Stack_factory();
-void Stack_destructor(Stack_t *stack);
+void Stack_destructor(Stack_t **stack);
 
 void *Stack_top(Stack_t *stack);
 bool Stack_empty(Stack_t *stack);

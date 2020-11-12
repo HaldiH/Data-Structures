@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include <stdbool.h>
 struct ForwardIterator {
     struct ForwardIterator *next;
     void *data;
@@ -25,12 +26,13 @@ int ForwardList_insert(ForwardList_t *forward_list, int pos, void *data_ptr);
 void *ForwardList_pop(ForwardList_t *forward_list, int pos);
 void *ForwardList_pop_front(ForwardList_t *forward_list);
 void *ForwardList_pop_back(ForwardList_t *forward_list);
-int ForwardList_swap(struct ForwardIterator **iterator1, struct ForwardIterator **iterator2);
+int ForwardList_swap(ForwardList_t **list);
 void *ForwardList_erase_after(ForwardList_t *forward_list, struct ForwardIterator *first, struct ForwardIterator *last);
 
 void *ForwardList_front(ForwardList_t *forward_list);
 void *ForwardList_back(ForwardList_t *forward_list);
 void *ForwardList_at(ForwardList_t *forward_list, int pos);
+bool ForwardList_empty(ForwardList_t *forward_list);
 
 struct ForwardIterator *ForwardList_begin(ForwardList_t *forward_list);
 struct ForwardIterator *ForwardList_end(ForwardList_t *forward_list);
