@@ -5,6 +5,7 @@
 #ifndef TP3_EXERCISE_1_H
 #define TP3_EXERCISE_1_H
 
+#include "forward_list.h"
 #include <stdlib.h>
 
 typedef unsigned int uint;
@@ -27,5 +28,9 @@ passenger_t *passenger_factory(uint id, char *firstName, char *lastName,
   passenger->seatNumber = seatNumber;
   return passenger;
 }
+
+char **getFields(const char *line, char separator);
+
+ForwardList_t extractPassengerList(const char *filename);
 
 #endif // TP3_EXERCISE_1_H

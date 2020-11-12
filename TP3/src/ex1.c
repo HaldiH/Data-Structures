@@ -2,8 +2,7 @@
 // Created by hugo on 3/18/20.
 //
 
-#include "Exercise_1.h"
-#include "forward_list.h"
+#include "ex1.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,20 +32,20 @@ char **getFields(const char *line, const char separator) {
 
   return fields;
 }
-
-int main(int argc, char *argv[]) {
-  const char *filename = "TP3.passagers.txt";
+ForwardList_t extractPassengerList(const char *filename) {
   FILE *fp = fopen(filename, "r");
 
   if (!fp) {
     printf("%s cannot be found", filename);
-    return 1;
+    exit(EXIT_FAILURE);
   }
 
   int c;
   char *line = NULL;
   size_t line_size = 0;
-  ForwardList_t *list = ForwardList_factory();
+  ForwardList_t list;
+  list.begin = NULL;
+  list.end = NULL;
 
   while ((c = getc(fp)) != EOF) {
     if (line_size == 0)
@@ -58,7 +57,7 @@ int main(int argc, char *argv[]) {
       passenger_t *passenger =
           passenger_factory(atoi(fields[0]), fields[1], fields[2],
                             atoi(fields[3]), atoi(fields[4]));
-      ForwardList_push_back(list, passenger);
+      ForwardList_push_back(&list, passenger);
       line = NULL;
       line_size = 0;
       free(fields);
@@ -68,8 +67,5 @@ int main(int argc, char *argv[]) {
   }
   free(line);
   free(fp);
-  while (!ForwardList_empty(list)) {
-    passenger_t *passenger = ForwardList_pop_front(list);
-    printf("%s\n", passenger->firstName);
-  }
+  return list;
 }
