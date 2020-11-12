@@ -1,5 +1,18 @@
 #include "LinkedList.h"
 #include <stdio.h>
+#include <stdint.h>
+
+#if INTPTR_MAX == INT64_MAX
+#define INTPTR_MAX_TYPE uint64_t
+#elif INTPTR_MAX == INT32_MAX
+#define INTPTR_MAX_TYPE uint32_t
+#elif INTPTR_MAX == INT16_MAX
+#define INTPTR_MAX_TYPE uint16_t
+#elif INTPTR_MAX == INT8_MAX
+#define INTPTR_MAX_TYPE uint8_t
+#else
+#error Unknown pointer size or missing size macros!
+#endif
 
 int main() {
     int *test_1 = (int *)1;
@@ -22,14 +35,14 @@ int main() {
     void *data = LinkedList_pop_front(list1);
 
     while (data) {
-        printf("%i\n", (int)data);
+        printf("%lu\n", (INTPTR_MAX_TYPE)data);
         data = LinkedList_pop_front(list1);
     }
-    printf("%i\n", (int)LinkedList_at(list2, 1));
+    printf("%lu\n", (INTPTR_MAX_TYPE)LinkedList_at(list2, 1));
 
     int *test5 = (int *)5;
     LinkedList_insert(list2, 4, test5);
-    printf("%i\n", (int)LinkedList_at(list2, 4));
+    printf("%lu\n", (INTPTR_MAX_TYPE)LinkedList_at(list2, 4));
 
     return 0;
 }
