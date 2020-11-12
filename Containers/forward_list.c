@@ -137,7 +137,7 @@ void *ForwardList_pop_back(ForwardList_t *forward_list) {
         current = current->next;
 
     void *result = current->next->data;
-    ForwardIterator_destructor(current);
+    ForwardIterator_destructor(current->next);
     forward_list->end = current;
     current->next = NULL;
     return result;
