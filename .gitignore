@@ -7,3 +7,5 @@
 .idea/
 .temp/
 cmake-build-debug/
+out/
+plantuml-images/
