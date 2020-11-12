@@ -52,16 +52,14 @@ int LinkedList_push_back(LinkedList *linked_list, void *data_ptr) {
     struct Node *node = Node_factory(data_ptr);
     node->next = NULL;
 
-    if (!linked_list->begin) {
+    if (!linked_list->end) {
         linked_list->begin = node;
+        linked_list->end = node;
         return 0;
     }
 
-    struct Node *current = linked_list->begin;
-    while (current->next)
-        current = current->next;
-
-    current->next = node;
+    linked_list->end->next = node;
+    linked_list->end = node;
     return 0;
 }
 
