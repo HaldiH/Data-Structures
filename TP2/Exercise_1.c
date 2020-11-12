@@ -2,33 +2,30 @@
 // Created by hugo1 on 11.03.2020.
 //
 #include "Exercise_1.h"
-#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-task_t *task_factory(char *task_name) {
-    task_t *task = malloc(sizeof(task_t));
-    task->isOk = false;
-    task->task_name = task_name;
+task_t task_factory(char *task_name) {
+    task_t task;
+    task.task_name = task_name;
     return task;
 }
 
-sub_cat_t *sub_cat_factory(char *sub_category_name) {
-    sub_cat_t *subCat = malloc(sizeof(sub_cat_t));
-    subCat->isOk = false;
-    subCat->sub_cat_name = sub_category_name;
-    subCat->tasks = NULL;
-    subCat->tasks_size = 0;
+sub_cat_t sub_cat_factory(char *sub_category_name) {
+    sub_cat_t subCat;
+    subCat.isOk = false;
+    subCat.sub_cat_name = sub_category_name;
+    subCat.tasks = NULL;
+    subCat.tasks_size = 0;
     return subCat;
 }
 
-category_t *category_factory(char *category_name) {
-    category_t *category = malloc(sizeof(category_t));
-    category->isOk = false;
-    category->category_name = category_name;
-    category->sub_categories = NULL;
-    category->sub_categories_size = 0;
+category_t category_factory(char *category_name) {
+    category_t category;
+    category.category_name = category_name;
+    category.sub_categories = NULL;
+    category.sub_categories_size = 0;
     return category;
 }
 /*Stack_t *getTaskStack(sub_cat_t *subCategory) { return subCategory ? subCategory->task_stack : NULL; }
@@ -84,7 +81,7 @@ int main(int argc, char *argv[]) {
                 categories = malloc(sizeof(category_t));
             else
                 categories = realloc(categories, categories_size * sizeof(category_t));
-            categories[categories_size - 1] = *category_factory(instruction.action);
+            categories[categories_size - 1] = category_factory(instruction.action);
         } else {
             category_t *category = &categories[categories_size - 1];
             if (strcmp(instruction.status, "sous-categorie") == 0) {
@@ -95,7 +92,7 @@ int main(int argc, char *argv[]) {
                     category->sub_categories =
                         realloc(category->sub_categories, category->sub_categories_size * sizeof(sub_cat_t));
                 }
-                category->sub_categories[category->sub_categories_size - 1] = *sub_cat_factory(instruction.action);
+                category->sub_categories[category->sub_categories_size - 1] = sub_cat_factory(instruction.action);
             } else if (strcmp(instruction.status, "tache") == 0) {
                 sub_cat_t *sub_category = &category->sub_categories[category->sub_categories_size - 1];
                 sub_category->tasks_size++;
@@ -103,7 +100,7 @@ int main(int argc, char *argv[]) {
                     sub_category->tasks = malloc(sizeof(task_t));
                 else
                     sub_category->tasks = realloc(sub_category->tasks, sub_category->tasks_size * sizeof(task_t));
-                sub_category->tasks[sub_category->tasks_size - 1] = *task_factory(instruction.action);
+                sub_category->tasks[sub_category->tasks_size - 1] = task_factory(instruction.action);
             }
         }
     }
