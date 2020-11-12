@@ -102,7 +102,7 @@ void *ForwardList_pop(ForwardList_t *forward_list, int pos) {
         current = current->next;
     }
     if (!current->next)
-        return NULL; // If the reached value is NULL (end of the list)
+        return NULL; // If the reached value_t is NULL (end of the list)
 
     struct ForwardIterator *popped_node = current->next;
     current->next = current->next->next;
