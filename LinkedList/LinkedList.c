@@ -2,17 +2,15 @@
 // Created by hugo on 3/3/20.
 //
 #include "LinkedList.h"
-#include <stdio.h>
 
-struct Node *Node_factory() {
+struct Node *Node_factory(void *data_ptr) {
     struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->next = NULL;
+    node->data = data_ptr;
     return node;
 }
 
 void Node_destructor(struct Node *to_destroy) { // WARNING ! Does not free data inside node
-    if (!to_destroy)
-        return;
-
     free(to_destroy);
 }
 
@@ -34,24 +32,24 @@ void LinkedList_destructor(LinkedList *linkedList) {
     }
     free(linkedList);
 }
+
 int LinkedList_push_front(LinkedList *linked_list, void *data_ptr) {
     if (!linked_list)
         return 1;
 
-    struct Node *node = Node_factory();
-    node->data = data_ptr;
+    struct Node *node = Node_factory(data_ptr);
     node->next = linked_list->begin;
     linked_list->begin = node;
     if (!linked_list->end)
         linked_list->end = node;
     return 0;
 }
+
 int LinkedList_push_back(LinkedList *linked_list, void *data_ptr) {
     if (!linked_list)
         return 1;
 
-    struct Node *node = Node_factory();
-    node->data = data_ptr;
+    struct Node *node = Node_factory(data_ptr);
     node->next = NULL;
 
     if (!linked_list->begin) {
@@ -66,6 +64,7 @@ int LinkedList_push_back(LinkedList *linked_list, void *data_ptr) {
     current->next = node;
     return 0;
 }
+
 int LinkedList_insert(LinkedList *linked_list, int pos, void *data_ptr) {
     if (!linked_list)
         return 1;
@@ -80,12 +79,12 @@ int LinkedList_insert(LinkedList *linked_list, int pos, void *data_ptr) {
 
         current = current->next;
     }
-    struct Node *node = Node_factory();
-    node->data = data_ptr;
+    struct Node *node = Node_factory(data_ptr);
     node->next = current->next;
     current->next = node;
     return 0;
 }
+
 void *LinkedList_pop(LinkedList *linked_list, int pos) {
     if (!linked_list)
         return NULL;
@@ -108,6 +107,7 @@ void *LinkedList_pop(LinkedList *linked_list, int pos) {
     Node_destructor(popped_node);
     return result;
 }
+
 void *LinkedList_pop_front(LinkedList *linked_list) {
     if (!linked_list || !linked_list->begin)
         return NULL;
@@ -118,6 +118,7 @@ void *LinkedList_pop_front(LinkedList *linked_list) {
     Node_destructor(popped_node);
     return result;
 }
+
 void *LinkedList_pop_back(LinkedList *linked_list) {
     if (!linked_list || !linked_list->begin)
         return NULL;
@@ -138,18 +139,22 @@ void *LinkedList_pop_back(LinkedList *linked_list) {
     current->next = NULL;
     return result;
 }
+
 int LinkedList_swap(struct Node *node1, struct Node *node2) {
     struct Node *tmp = node1;
     node1 = node2;
     node2 = tmp;
     return 0;
 }
+
 void *LinkedList_front(LinkedList *linked_list) {
     return linked_list && linked_list->begin ? linked_list->begin->data : NULL;
 }
+
 void *LinkedList_back(LinkedList *linked_list) {
     return linked_list && linked_list->end ? linked_list->end->data : NULL;
 }
+
 void *LinkedList_at(LinkedList *linked_list, int pos) {
     if (!linked_list || !linked_list->begin)
         return NULL;
@@ -163,9 +168,11 @@ void *LinkedList_at(LinkedList *linked_list, int pos) {
 
     return current->data;
 }
+
 struct Node *LinkedList_begin(LinkedList *linked_list) {
     return linked_list ? linked_list->begin : NULL;
 }
+
 struct Node *LinkedList_end(LinkedList *linked_list) {
     return linked_list ? linked_list->end : NULL;
 }

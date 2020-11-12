@@ -10,7 +10,7 @@ struct Node {
     void *data;
 };
 
-struct Node *Node_factory();
+struct Node *Node_factory(void *data_ptr);
 void Node_destructor(struct Node *to_destroy);
 
 typedef struct {
