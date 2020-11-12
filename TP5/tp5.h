@@ -17,15 +17,15 @@ typedef struct {
 passenger_t *passenger_construct(uint id, const char *first_name, const char *last_name, uint age, uint seat_number);
 void passenger_destroy(passenger_t *passenger);
 
-int read_file(const char *filename, passenger_t **passenger_list, passenger_t **hash_table, uint hash_table_size, int (*callback)(passenger_t **, uint, passenger_t *));
+int read_file(const char *filename, passenger_t **passenger_list, passenger_t **hash_table, uint hash_table_size, int (*callback)(passenger_t **, int, passenger_t *));
 int write_file(const char *filename, passenger_t **hash_table, uint hash_table_size);
 uint codes(char *word);
 uint codec(char c);
 uint hashs(char *word, int m);
-int simple_hash_table(passenger_t **hash_table, uint hash_table_size, passenger_t *);
-int linear_probing(passenger_t **hash_table, uint mod, passenger_t *);
-int quadratic_probing(passenger_t **hash_table, uint mod, passenger_t *);
-int double_hashing(passenger_t **hash_table, uint mod, passenger_t *);
+int simple_hash_table(passenger_t **hash_table, int hash_table_size, passenger_t *);
+int linear_probing(passenger_t **hash_table, int mod, passenger_t *);
+int quadratic_probing(passenger_t **hash_table, int mod, passenger_t *);
+int double_hashing(passenger_t **hash_table, int mod, passenger_t *);
 size_t parse_line(char **dest, const char *line, char separator, size_t cell_size);
 
 /*
@@ -102,7 +102,7 @@ size_t parse_line(char **dest, const char *line, const char separator, size_t ce
     return k;
 }
 
-int simple_hash_table(passenger_t **hash_table, const uint hash_table_size, passenger_t *passenger) {
+int simple_hash_table(passenger_t **hash_table, const int hash_table_size, passenger_t *passenger) {
     uint hash = hashs(passenger->first_name, hash_table_size);
     if (hash_table[hash])
         printf("Collision\n");
@@ -113,7 +113,7 @@ int simple_hash_table(passenger_t **hash_table, const uint hash_table_size, pass
     return 0;
 }
 
-int linear_probing(passenger_t **hash_table, uint mod, passenger_t *passenger) {
+int linear_probing(passenger_t **hash_table, int mod, passenger_t *passenger) {
     uint hash = hashs(passenger->first_name, mod);
     uint i = 0;
     uint probe;
@@ -128,7 +128,7 @@ int linear_probing(passenger_t **hash_table, uint mod, passenger_t *passenger) {
     return 0;
 }
 
-int quadratic_probing(passenger_t **hash_table, uint mod, passenger_t *passenger) {
+int quadratic_probing(passenger_t **hash_table, int mod, passenger_t *passenger) {
     uint hash = hashs(passenger->first_name, mod);
     uint i = 0;
     uint probe;
@@ -145,10 +145,10 @@ int quadratic_probing(passenger_t **hash_table, uint mod, passenger_t *passenger
     return 0;
 }
 
-int double_hashing(passenger_t **hash_table, uint mod, passenger_t *passenger) {
+int double_hashing(passenger_t **hash_table, int mod, passenger_t *passenger) {
     uint i = 0;
     uint probe;
-    while (hash_table[(probe = (hashs(passenger->first_name, mod) + i * hashs2(passenger->first_name, mod)) % mod)]) {
+    while (hash_table[(probe = (hashs(passenger->first_name, mod) + i * hashs2(passenger->first_name, mod - 4)) % mod)]) {
         printf("Collision. Probing of %u\n", ++i);
         if (i >= mod) {
             printf("Cannot insert value\n");
@@ -159,7 +159,7 @@ int double_hashing(passenger_t **hash_table, uint mod, passenger_t *passenger) {
     return 0;
 }
 
-int read_file(const char *filename, passenger_t **passenger_list, passenger_t **hash_table, const uint hash_table_size, int (*callback)(passenger_t **, uint, passenger_t *)) {
+int read_file(const char *filename, passenger_t **passenger_list, passenger_t **hash_table, const uint hash_table_size, int (*callback)(passenger_t **, int, passenger_t *)) {
     FILE *fp;
     if (!(fp = fopen(filename, "ro"))) {
         perror(filename);
